@@ -23,6 +23,8 @@ When you've got the necessary ID values from your Firebase App, head over to the
 
 ## Future Enhancements
 
+[![CircleCI](https://circleci.com/gh/andrewevans0102/reyreys-restaurants.svg?style=svg)](https://circleci.com/gh/andrewevans0102/reyreys-restaurants)
+
 PR's are always welcome!
 
 Areas of improvement include:
