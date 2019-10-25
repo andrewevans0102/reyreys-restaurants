@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="title-container">
+        <h1>ReyRey's Restaurants</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="reyrey-picture">
+        <p>Love me some Gatorade....nom nom nom nom</p>
+        <img src="../../../assets/wg_create.png" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-container col">
+      <form class="form-container">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="name"
+            name="name"
+            [(ngModel)]="wgRestaurant.name"
+            required="true"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="link"
+            name="link"
+            [(ngModel)]="wgRestaurant.link"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="description"
+            name="description"
+            [(ngModel)]="wgRestaurant.description"
+          />
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="row page-bottom">
+        <div class="col wg-buttons">
+          <button
+            type="button"
+            class="btn btn-secondary btn-success"
+            (click)="save()"
+          >
+            save
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary btn-danger"
+            (click)="cancel()"
+          >
+            cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

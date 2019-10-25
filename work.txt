@@ -1,0 +1,2 @@
+1. setup database security rules
+2. build pipeline

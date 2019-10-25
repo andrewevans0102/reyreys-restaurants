@@ -1,0 +1,33 @@
+.mat-dialog-content ::ng-deep {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 1em;
+  border-radius: 2em;
+}
+
+img {
+  height: 10em;
+  width: 10em;
+  border-radius: 50%;
+}
+
+input {
+  width: 100%;
+  max-width: 40em;
+  color: #2196f3;
+}
+
+p {
+  width: 10em;
+  font-size: 1.25em;
+  margin: 1em;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}

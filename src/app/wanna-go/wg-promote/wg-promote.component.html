@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="title-container">
+        <h1>ReyRey's Restaurants</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="reyrey-picture">
+        <p>where u be rollin?</p>
+        <img src="../../../assets/wg_promote.png" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="input-container">
+        <form class="form-container" *ngIf="promotedRestaurant !== undefined">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="name"
+              name="name"
+              [(ngModel)]="promotedRestaurant.name"
+              required="true"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="description"
+              name="description"
+              [(ngModel)]="promotedRestaurant.description"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="location"
+              name="location"
+              [(ngModel)]="promotedRestaurant.location"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="link"
+              name="link"
+              [(ngModel)]="promotedRestaurant.link"
+            />
+          </mat-form-field>
+          <div class="score">
+            <span class="stars-title">
+              <i class="far fa-star"></i>
+              Stars
+              <i class="far fa-star"></i>
+            </span>
+            <mat-slider
+              name="stars"
+              class="slider-margin"
+              [disabled]="disabled"
+              [invert]="invert"
+              [max]="max"
+              [min]="min"
+              [step]="step"
+              [thumbLabel]="thumbLabel"
+              [tickInterval]="tickInterval"
+              [(ngModel)]="promotedRestaurant.stars"
+              [vertical]="vertical"
+            >
+            </mat-slider>
+          </div>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="review"
+              name="review"
+              [(ngModel)]="promotedRestaurant.review"
+            />
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="row page-bottom">
+        <div class="col wg-buttons">
+          <button
+            type="button"
+            class="btn btn-secondary btn-success"
+            (click)="save()"
+          >
+            save
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary btn-danger"
+            (click)="cancel()"
+          >
+            cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="title-container">
+        <h1>ReyRey's Restaurants</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="reyrey-picture">
+        <div class="picture-caption">reyrey wanna go nom nom...</div>
+        <img src="../../../assets/wanna_go.png" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div
+        *ngFor="let wgRestaurant of wgRestaurants | async"
+        class="card-content"
+      >
+        <div class="card wg-card">
+          <div class="card-body">
+            <h5 class="card-title wg-title">{{ wgRestaurant.name }}</h5>
+            <p class="card-text card-description">
+              {{ wgRestaurant.description }}
+            </p>
+            <div class="wg-buttons" role="group">
+              <button
+                type="button"
+                class="btn btn-secondary fastfood-button"
+                (click)="promote(wgRestaurant)"
+              >
+                promote
+              </button>
+              <button type="button" class="btn btn-secondary">
+                <a href="{{ wgRestaurant.link }}">
+                  website
+                </a>
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary delete-button"
+                (click)="delete(wgRestaurant.id)"
+              >
+                delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row page-bottom">
+    <div class="col wg-buttons">
+      <button
+        type="button"
+        class="btn btn-secondary btn-danger"
+        (click)="back()"
+      >
+        back
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-success"
+        (click)="create()"
+      >
+        create
+      </button>
+    </div>
+  </div>
+</div>

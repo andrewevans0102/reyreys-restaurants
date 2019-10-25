@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="title-container">
+        <h1>ReyRey's Restaurants</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="reyrey-picture">
+        <p class="picture-caption">Look at all those places!</p>
+        <img src="../../../assets/been_there.png" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col card-content">
+      <div *ngFor="let restaurant of restaurants | async">
+        <div class="card bt-card">
+          <div class="card-body">
+            <h5 class="card-title bt-title">{{ restaurant.name }}</h5>
+            <p class="card-text">
+              {{ restaurant.description }}
+            </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ restaurant.location }}</li>
+            <li class="list-group-item">{{ restaurant.review }}</li>
+            <li class="list-group-item">
+              <div>
+                <div *ngIf="restaurant.stars === 1">
+                  <i class="far fa-star"></i>
+                </div>
+                <div *ngIf="restaurant.stars === 2">
+                  <i class="far fa-star"></i><i class="far fa-star"></i>
+                </div>
+                <div *ngIf="restaurant.stars === 3">
+                  <i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div *ngIf="restaurant.stars === 4">
+                  <i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i><i class="far fa-star"></i>
+                </div>
+                <div *ngIf="restaurant.stars === 5">
+                  <i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="card-body">
+            <div class="wg-buttons" role="group">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="edit(restaurant.id)"
+              >
+                edit
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="delete(restaurant.id)"
+              >
+                delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="row page-bottom">
+        <div class="col wg-buttons">
+          <button
+            type="button"
+            class="btn btn-secondary btn-danger"
+            (click)="back()"
+          >
+            back
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

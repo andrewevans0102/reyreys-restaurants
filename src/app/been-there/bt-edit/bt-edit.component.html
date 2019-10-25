@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="title-container">
+        <h1>ReyRey's Restaurants</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="reyrey-picture">
+        <p>edit who?</p>
+        <img src="../../../assets/bt_edit.png" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="input-container">
+        <form class="form-container" *ngIf="btRestaurant !== undefined">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="name"
+              name="name"
+              [(ngModel)]="btRestaurant.name"
+              required="true"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="description"
+              name="description"
+              [(ngModel)]="btRestaurant.description"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="location"
+              name="location"
+              [(ngModel)]="btRestaurant.location"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="link"
+              name="link"
+              [(ngModel)]="btRestaurant.link"
+            />
+          </mat-form-field>
+          <div class="score">
+            <span class="stars-title">
+              <i class="far fa-star"></i>
+              Stars
+              <i class="far fa-star"></i>
+            </span>
+            <mat-slider
+              name="stars"
+              class="slider-margin"
+              [disabled]="disabled"
+              [invert]="invert"
+              [max]="max"
+              [min]="min"
+              [step]="step"
+              [thumbLabel]="thumbLabel"
+              [tickInterval]="tickInterval"
+              [(ngModel)]="btRestaurant.stars"
+              [vertical]="vertical"
+            >
+            </mat-slider>
+          </div>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="review"
+              name="review"
+              [(ngModel)]="btRestaurant.review"
+            />
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="row page-bottom">
+        <div class="col wg-buttons">
+          <button
+            type="button"
+            class="btn btn-secondary btn-success"
+            (click)="save()"
+          >
+            save
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary btn-danger"
+            (click)="cancel()"
+          >
+            cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
