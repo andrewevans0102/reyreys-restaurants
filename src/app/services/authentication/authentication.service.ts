@@ -13,7 +13,11 @@ export class AuthenticationService {
 
   async createUserWithEmailAndPassword(email: string, password: string) {
     try {
-      await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+      const res = await this.afAuth.auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      return res.user.uid;
     } catch (error) {
       throw error;
     }

@@ -21,7 +21,6 @@ export class CreateAccountComponent implements OnInit {
     lastName: new FormControl('')
   });
   popupModalData: PopupModalData;
-  uid: string;
 
   constructor(
     private router: Router,
@@ -30,9 +29,7 @@ export class CreateAccountComponent implements OnInit {
     private authService: AuthenticationService
   ) {}
 
-  ngOnInit() {
-    this.uid = this.authService.getLoggedInUser();
-  }
+  ngOnInit() {}
 
   getEmailErrorMessage() {
     return this.createForm.controls.email.hasError('required')
@@ -43,8 +40,9 @@ export class CreateAccountComponent implements OnInit {
   }
 
   async createAccount() {
+    let createdUid = '';
     try {
-      await this.authService.createUserWithEmailAndPassword(
+      createdUid = await this.authService.createUserWithEmailAndPassword(
         this.createForm.controls.email.value,
         this.createForm.controls.password.value
       );
@@ -54,7 +52,7 @@ export class CreateAccountComponent implements OnInit {
     }
 
     const user: User = {
-      uid: this.uid,
+      uid: createdUid,
       firstName: this.createForm.controls.firstName.value,
       lastName: this.createForm.controls.lastName.value,
       email: this.createForm.controls.email.value
@@ -68,7 +66,7 @@ export class CreateAccountComponent implements OnInit {
     }
 
     this.popupService.infoPopup('Successful Registration!');
-    this.router.navigateByUrl('/content-menu');
+    this.router.navigateByUrl('/menu');
   }
 
   cancel() {
