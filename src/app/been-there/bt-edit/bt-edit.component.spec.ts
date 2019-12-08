@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import 'hammerjs';
 
 describe('BtEditComponent', () => {
   let component: BtEditComponent;

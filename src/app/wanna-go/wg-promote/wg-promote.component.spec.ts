@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import 'hammerjs';
 
 describe('WgPromoteComponent', () => {
   let component: WgPromoteComponent;
