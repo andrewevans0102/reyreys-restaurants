@@ -16,55 +16,40 @@
   </div>
   <div class="row">
     <div class="input-container col">
-      <form class="form-container">
+      <form [formGroup]="saveForm" (ngSubmit)="save()" class="form-container">
         <mat-form-field>
-          <input
-            matInput
-            placeholder="name"
-            name="name"
-            [(ngModel)]="wgRestaurant.name"
-            required="true"
-          />
+          <input matInput placeholder="name" formControlName="name" required />
         </mat-form-field>
         <mat-form-field>
-          <input
-            matInput
-            placeholder="link"
-            name="link"
-            [(ngModel)]="wgRestaurant.link"
-          />
+          <input matInput placeholder="link" formControlName="link" />
         </mat-form-field>
         <mat-form-field>
           <input
             matInput
             placeholder="description"
-            name="description"
-            [(ngModel)]="wgRestaurant.description"
+            formControlName="description"
           />
         </mat-form-field>
-      </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="row page-bottom">
-        <div class="col wg-buttons">
+        <div class="wg-buttons">
           <button
-            type="button"
-            class="btn btn-secondary btn-success"
-            (click)="save()"
+            mat-raised-button
+            color="success"
+            type="submit"
+            [disabled]="!saveForm.valid"
+            id="create-button"
           >
-            save
+            Create
           </button>
           <button
+            mat-raised-button
+            color="warn"
             type="button"
-            class="btn btn-secondary btn-danger"
             (click)="cancel()"
           >
-            cancel
+            Cancel
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

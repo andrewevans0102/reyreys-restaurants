@@ -4,6 +4,8 @@ import { PopupService } from 'src/app/services/popup/popup.service';
 import { Router } from '@angular/router';
 import { WgRestaurant } from 'src/app/models/wg-restaurant/wg-restaurant';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PopupModalData } from 'src/app/models/popup-modal-data/popup-modal-data';
 
 @Component({
   selector: 'app-wg-create',
@@ -11,8 +13,13 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
   styleUrls: ['./wg-create.component.scss']
 })
 export class WgCreateComponent implements OnInit {
-  wgRestaurant: WgRestaurant;
-  uid: string;
+  hidePassword = true;
+  saveForm = new FormGroup({
+    name: new FormControl(''),
+    link: new FormControl(''),
+    description: new FormControl('')
+  });
+  popupModalData: PopupModalData;
 
   constructor(
     private DBService: DatabaseService,
@@ -21,14 +28,20 @@ export class WgCreateComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.uid = this.authService.getLoggedInUser();
-    this.wgRestaurant = new WgRestaurant();
-  }
+  ngOnInit() {}
 
   async save() {
     try {
-      await this.DBService.saveWgRestaurant(this.wgRestaurant, this.uid);
+      const wgRestaurant: WgRestaurant = {
+        id: null,
+        uid: this.authService.getLoggedInUser(),
+        name: this.saveForm.controls.name.value,
+        link: this.saveForm.controls.link.value,
+        description: this.saveForm.controls.description.value,
+        recorded: null
+      };
+
+      await this.DBService.saveWgRestaurant(wgRestaurant);
     } catch (error) {
       this.popupService.errorPopup(error.message);
       return;

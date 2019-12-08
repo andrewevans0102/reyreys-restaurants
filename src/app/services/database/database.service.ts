@@ -31,18 +31,18 @@ export class DatabaseService {
    * @param wgRestaurant, restaurant
    * @param uid, uid of user saving the restaurant
    */
-  async saveWgRestaurant(wgRestaurant: WgRestaurant, uid: string) {
+  async saveWgRestaurant(wgRestaurant: WgRestaurant) {
     const save = {
-      uid,
       id: this.afs.createId(),
-      recorded: Date.now(),
+      uid: wgRestaurant.uid,
       name: wgRestaurant.name,
       link: wgRestaurant.link,
-      description: wgRestaurant.description
+      description: wgRestaurant.description,
+      recorded: Date.now()
     };
 
     await this.afs
-      .doc(`users/${uid}`)
+      .doc(`users/${save.uid}`)
       .collection('restaurants_wg')
       .doc(save.id)
       .set(save)
