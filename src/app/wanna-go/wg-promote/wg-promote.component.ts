@@ -5,6 +5,8 @@ import { BtRestaurant } from 'src/app/models/bt-restaurant/bt-restaurant';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { PopupService } from 'src/app/services/popup/popup.service';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { PopupModalData } from 'src/app/models/popup-modal-data/popup-modal-data';
 
 @Component({
   selector: 'app-wg-promote',
@@ -21,9 +23,7 @@ export class WgPromoteComponent implements OnInit {
   @Input()
   wgRestaurantId: string;
 
-  promotedRestaurant = new BtRestaurant();
   autoTicks = false;
-  disabled = false;
   invert = false;
   max = 5;
   min = 0;
@@ -35,6 +35,17 @@ export class WgPromoteComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   private _tickInterval = 1;
   uid: string;
+
+  hidePassword = true;
+  promoteForm = new FormGroup({
+    name: new FormControl(''),
+    description: new FormControl(''),
+    location: new FormControl(''),
+    link: new FormControl(''),
+    stars: new FormControl(''),
+    review: new FormControl('')
+  });
+  popupModalData: PopupModalData;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,11 +64,9 @@ export class WgPromoteComponent implements OnInit {
     try {
       this.uid = this.authService.getLoggedInUser();
       const wgRestaurant = await this.DBService.getWgRestaurant(id, this.uid);
-      this.promotedRestaurant.uid = wgRestaurant.uid;
-      this.promotedRestaurant.id = wgRestaurant.id;
-      this.promotedRestaurant.name = wgRestaurant.name;
-      this.promotedRestaurant.link = wgRestaurant.link;
-      this.promotedRestaurant.description = wgRestaurant.description;
+      this.promoteForm.controls.name.setValue(wgRestaurant.name);
+      this.promoteForm.controls.link.setValue(wgRestaurant.link);
+      this.promoteForm.controls.description.setValue(wgRestaurant.description);
     } catch (error) {
       this.popupService.errorPopup(error.message);
       return;
@@ -65,38 +74,25 @@ export class WgPromoteComponent implements OnInit {
   }
 
   async save() {
-    // this could be removed if switched to reactive forms
-    if (this.promotedRestaurant.name === undefined) {
-      this.popupService.errorPopup('restaurant name is required');
-      return;
-    }
-    if (this.promotedRestaurant.description === undefined) {
-      this.popupService.errorPopup('restaurant description is required');
-      return;
-    }
-    if (this.promotedRestaurant.location === undefined) {
-      this.popupService.errorPopup('restaurant location is requried');
-      return;
-    }
-    if (this.promotedRestaurant.link === undefined) {
-      this.popupService.errorPopup('restaurant link is required');
-      return;
-    }
-    if (this.promotedRestaurant.stars === undefined) {
-      this.popupService.errorPopup('restaurant stars is required');
-      return;
-    }
-    if (this.promotedRestaurant.review === undefined) {
-      this.popupService.errorPopup('restaurant review is required');
-      return;
-    }
-
     try {
       // delete from wg table
       await this.DBService.deleteWgRestaurant(this.wgRestaurantId, this.uid);
+
       // add to bt table
-      await this.DBService.saveBtRestaurant(this.promotedRestaurant, this.uid);
+      const promotedRestaurant: BtRestaurant = {
+        id: this.wgRestaurantId,
+        uid: this.uid,
+        name: this.promoteForm.controls.name.value,
+        description: this.promoteForm.controls.description.value,
+        location: this.promoteForm.controls.location.value,
+        link: this.promoteForm.controls.link.value,
+        stars: this.promoteForm.controls.stars.value,
+        review: this.promoteForm.controls.review.value,
+        recorded: null
+      };
+      await this.DBService.saveBtRestaurant(promotedRestaurant);
       this.popupService.infoPopup('success');
+
       // navigate to bt view
       this.router.navigateByUrl('/bt-view');
     } catch (error) {

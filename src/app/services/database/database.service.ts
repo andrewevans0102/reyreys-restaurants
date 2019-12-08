@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/models/user/user';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { WgRestaurant } from 'src/app/models/wg-restaurant/wg-restaurant';
 import { BtRestaurant } from 'src/app/models/bt-restaurant/bt-restaurant';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -99,11 +97,10 @@ export class DatabaseService {
    * @param bgRestaurant, restaurant
    * @param uid, uid of user saving restaurant
    */
-  async saveBtRestaurant(bgRestaurant: BtRestaurant, uid: string) {
-    console.log(bgRestaurant.stars);
+  async saveBtRestaurant(bgRestaurant: BtRestaurant) {
     const save = {
       id: this.afs.createId(),
-      uid,
+      uid: bgRestaurant.uid,
       name: bgRestaurant.name,
       description: bgRestaurant.description,
       location: bgRestaurant.location,
@@ -114,7 +111,7 @@ export class DatabaseService {
     };
 
     await this.afs
-      .doc(`users/${uid}`)
+      .doc(`users/${bgRestaurant.uid}`)
       .collection('restaurants_bt')
       .doc(save.id)
       .set(save)
@@ -128,7 +125,7 @@ export class DatabaseService {
    * @param btRestaurant, restaurant
    * @param uid, uid of person that owns the restaurant value
    */
-  async updateBtRestaurant(btRestaurant: BtRestaurant, uid: string) {
+  async updateBtRestaurant(btRestaurant: BtRestaurant) {
     const save = {
       id: btRestaurant.id,
       uid: btRestaurant.uid,
@@ -142,7 +139,7 @@ export class DatabaseService {
     };
 
     await this.afs
-      .doc(`users/${uid}`)
+      .doc(`users/${btRestaurant.uid}`)
       .collection('restaurants_bt')
       .doc(save.id)
       .set(save)

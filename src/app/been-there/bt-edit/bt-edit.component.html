@@ -17,38 +17,37 @@
   <div class="row">
     <div class="col">
       <div class="input-container">
-        <form class="form-container" *ngIf="btRestaurant !== undefined">
+        <form [formGroup]="editForm" (ngSubmit)="save()" class="form-container">
           <mat-form-field>
             <input
               matInput
               placeholder="name"
-              name="name"
-              [(ngModel)]="btRestaurant.name"
-              required="true"
+              formControlName="name"
+              required
             />
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
               placeholder="description"
-              name="description"
-              [(ngModel)]="btRestaurant.description"
+              formControlName="description"
+              required
             />
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
               placeholder="location"
-              name="location"
-              [(ngModel)]="btRestaurant.location"
+              formControlName="location"
+              required
             />
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
               placeholder="link"
-              name="link"
-              [(ngModel)]="btRestaurant.link"
+              formControlName="link"
+              required
             />
           </mat-form-field>
           <div class="score">
@@ -60,15 +59,15 @@
             <mat-slider
               name="stars"
               class="slider-margin"
-              [disabled]="disabled"
               [invert]="invert"
               [max]="max"
               [min]="min"
               [step]="step"
               [thumbLabel]="thumbLabel"
               [tickInterval]="tickInterval"
-              [(ngModel)]="btRestaurant.stars"
+              formControlName="stars"
               [vertical]="vertical"
+              required
             >
             </mat-slider>
           </div>
@@ -76,33 +75,30 @@
             <input
               matInput
               placeholder="review"
-              name="review"
-              [(ngModel)]="btRestaurant.review"
+              formControlName="review"
+              required
             />
           </mat-form-field>
+          <div class="wg-buttons">
+            <button
+              mat-raised-button
+              color="success"
+              type="submit"
+              [disabled]="!editForm.valid"
+              id="create-button"
+            >
+              Save
+            </button>
+            <button
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="cancel()"
+            >
+              Cancel
+            </button>
+          </div>
         </form>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="row page-bottom">
-        <div class="col wg-buttons">
-          <button
-            type="button"
-            class="btn btn-secondary btn-success"
-            (click)="save()"
-          >
-            save
-          </button>
-          <button
-            type="button"
-            class="btn btn-secondary btn-danger"
-            (click)="cancel()"
-          >
-            cancel
-          </button>
-        </div>
       </div>
     </div>
   </div>

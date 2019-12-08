@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { WgPromoteComponent } from './wg-promote.component';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -60,7 +61,12 @@ describe('WgPromoteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, FormsModule, RouterTestingModule],
+      imports: [
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule
+      ],
       declarations: [WgPromoteComponent],
       providers: [
         { provide: AngularFirestore, useValue: firestoreStub },
