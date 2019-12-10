@@ -1,0 +1,8 @@
+site_name: Reyrey's Restaurants
+nav:
+  - Home: index.md
+  - CreateAccount: createAccount.md
+  - Menu: menu.md
+  - WannaGo: wannaGo.md
+  - BeenThere: beenThere.md
+theme: readthedocs
