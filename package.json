@@ -9,7 +9,9 @@
     "test-watch": "ng test --watch=true",
     "setup-commit": "./scripts/setup_commit.sh",
     "setup-local": "./scripts/setup_local.sh",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "guide-serve": "cd guide && mkdocs serve",
+    "guide-deploy": "cd guide && mkdocs gh-deploy"
   },
   "private": true,
   "dependencies": {
