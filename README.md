@@ -14,11 +14,11 @@ All while being helped by ReyRey!
 
 This project is Open Source and makes use of Angular, Firebase, AngularFire2, Jest for unit testing, and Bootstrap.
 
-[Check out the app running on the hosted site at reyreysrestaurants.com](https://www.reyreysrestaurants.com)
+Check out the app running on the hosted site at [reyreysrestaurants.com](https://www.reyreysrestaurants.com)
 
-[Check out the site official guide here](https://andrewevans0102.github.io/reyreys-restaurants/);
+Check out the site official [guide here](https://andrewevans0102.github.io/reyreys-restaurants/).
 
-If you'd like to use this in your [Firebase project](https://firebase.google.com/), checkout the [AngularFire2 getting started guide](https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md).
+If you'd like to run a local copy of this as a [Firebase project](https://firebase.google.com/), checkout the [AngularFire2 getting started guide](https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md).
 
 When you've got the necessary ID values from your Firebase App, head over to the `src/environments` directory and enjoy puuuuurrrrfection!
 

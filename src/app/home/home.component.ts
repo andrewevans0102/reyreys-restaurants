@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -21,5 +22,13 @@ export class HomeComponent implements OnInit {
 
   content() {
     this.router.navigateByUrl('/content');
+  }
+
+  guide() {
+    window.open(environment.guide, '_blank');
+  }
+
+  project() {
+    window.open(environment.project, '_blank');
   }
 }
