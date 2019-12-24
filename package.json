@@ -11,7 +11,8 @@
     "setup-local": "./scripts/setup_local.sh",
     "deploy": "firebase deploy",
     "guide-serve": "cd guide && mkdocs serve",
-    "guide-deploy": "cd guide && mkdocs gh-deploy"
+    "guide-deploy": "cd guide && mkdocs gh-deploy",
+    "test-coverage": "ng test --collectCoverage"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +36,7 @@
   },
   "devDependencies": {
     "@angular-builders/jest": "^8.2.0",
-    "@angular-devkit/build-angular": "~0.800.0",
+    "@angular-devkit/build-angular": "^0.803.21",
     "@angular/cli": "~8.0.3",
     "@angular/compiler-cli": "~8.0.1",
     "@angular/language-service": "~8.0.1",

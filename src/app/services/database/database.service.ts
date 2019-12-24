@@ -97,21 +97,21 @@ export class DatabaseService {
    * @param bgRestaurant, restaurant
    * @param uid, uid of user saving restaurant
    */
-  async saveBtRestaurant(bgRestaurant: BtRestaurant) {
+  async saveBtRestaurant(btRestaurant: BtRestaurant) {
     const save = {
       id: this.afs.createId(),
-      uid: bgRestaurant.uid,
-      name: bgRestaurant.name,
-      description: bgRestaurant.description,
-      location: bgRestaurant.location,
-      link: bgRestaurant.link,
-      stars: bgRestaurant.stars,
-      review: bgRestaurant.review,
+      uid: btRestaurant.uid,
+      name: btRestaurant.name,
+      description: btRestaurant.description,
+      location: btRestaurant.location,
+      link: btRestaurant.link,
+      stars: btRestaurant.stars,
+      review: btRestaurant.review,
       recorded: Date.now()
     };
 
     await this.afs
-      .doc(`users/${bgRestaurant.uid}`)
+      .doc(`users/${btRestaurant.uid}`)
       .collection('restaurants_bt')
       .doc(save.id)
       .set(save)
