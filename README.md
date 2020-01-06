@@ -12,7 +12,7 @@ When you've visited one of your restaurants "promote" it to "been-there."
 
 All while being helped by ReyRey!
 
-This project is Open Source and makes use of Angular, Firebase, AngularFire2, Jest for unit testing, and Bootstrap.
+This project is Open Source and makes use of [Angular](https://angular.io/), [Firebase](https://firebase.google.com/), [AngularFire2](https://github.com/angular/angularfire), and [Jest](https://jestjs.io/).
 
 Check out the app running on the hosted site at [reyreysrestaurants.com](https://www.reyreysrestaurants.com)
 
@@ -23,8 +23,6 @@ If you'd like to run a local copy of this as a [Firebase project](https://fireba
 When you've got the necessary ID values from your Firebase App, head over to the `src/environments` directory and enjoy puuuuurrrrfection!
 
 ## Future Enhancements
-
-[![CircleCI](https://circleci.com/gh/andrewevans0102/reyreys-restaurants.svg?style=svg)](https://circleci.com/gh/andrewevans0102/reyreys-restaurants)
 
 PR's are always welcome!
 

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthenticationService } from './authentication.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 const credentialsMock = {
@@ -40,13 +40,11 @@ const fakeSignOutHandler = (): Promise<any> => {
 const angularFireAuthStub = {
   authState: fakeAuthState,
   auth: {
-    createUserWithEmailAndPassword: jasmine
-      .createSpy('createUserWithEmailAndPassword')
-      .and.callFake(fakeCreateUserHandler),
-    signInWithEmailAndPassword: jasmine
-      .createSpy('signInWithEmailAndPassword')
-      .and.callFake(fakeSignInHandler),
-    signOut: jasmine.createSpy('signOut').and.callFake(fakeSignOutHandler)
+    createUserWithEmailAndPassword: (email: string, password: string) =>
+      fakeCreateUserHandler(email, password),
+    signInWithEmailAndPassword: (email: string, password: string) =>
+      fakeSignInHandler(email, password),
+    signOut: () => fakeSignOutHandler()
   }
 };
 
@@ -67,12 +65,11 @@ describe('AuthenticationService', () => {
     fakeAuthState.next(null);
   });
 
-  it('should be created', () => {
-    // const service: AuthenticationService = TestBed.get(AuthenticationService);
+  test('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call the create user with email and password successfully', async () => {
+  test('should call the create user with email and password successfully', async () => {
     const response = await service.createUserWithEmailAndPassword(
       credentialsMock.email,
       credentialsMock.password
@@ -80,16 +77,21 @@ describe('AuthenticationService', () => {
     expect(response).toBe(createUserMock.user.uid);
   });
 
-  it('should call logout successfully', async () => {
-    await service.logout();
-    expect(service).toBeTruthy();
-  });
-
-  it('should call signin successfully', async () => {
+  test('should call logout successfully', async () => {
     await service.signInWithEmailAndPassword(
       credentialsMock.email,
       credentialsMock.password
     );
-    expect(service).toBeTruthy();
+    expect(fakeAuthState.value).toEqual(userMock);
+    await service.logout();
+    expect(fakeAuthState.value).toEqual(null);
+  });
+
+  test('should call signin successfully', async () => {
+    await service.signInWithEmailAndPassword(
+      credentialsMock.email,
+      credentialsMock.password
+    );
+    expect(fakeAuthState.value).toEqual(userMock);
   });
 });

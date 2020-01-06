@@ -25,6 +25,30 @@ export class DatabaseService {
   }
 
   /**
+   * get wanna-go restaurant
+   * @param id, id of restaurant to retrieve
+   * @param uid, uid of user who owns the restaurant value
+   */
+  async getUser(uid: string) {
+    return await this.afs
+      .collection('users')
+      .ref.doc(uid)
+      .get()
+      .then(documentSnapshot => {
+        const user = {
+          uid: documentSnapshot.data().uid,
+          firstName: documentSnapshot.data().firstName,
+          lastName: documentSnapshot.data().lastName,
+          email: documentSnapshot.data().email
+        };
+        return user;
+      })
+      .catch(error => {
+        throw error;
+      });
+  }
+
+  /**
    * create a wanna-go restaurant
    * @param wgRestaurant, restaurant
    * @param uid, uid of user saving the restaurant

@@ -9,7 +9,7 @@ describe('PopupService', () => {
     })
   );
 
-  it('should be created', () => {
+  test('should be created', () => {
     const service: PopupService = TestBed.get(PopupService);
     expect(service).toBeTruthy();
   });
